@@ -15,6 +15,8 @@ public class Locators2 {
 		// this is a global setting that tells Selenium to wait 3 seconds if elements aren't available
 		website.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		
+		String password = getPassword(website);
+		
 		// visits a specific website
 		website.get("https://rahulshettyacademy.com/locatorspractice/");
 
@@ -28,7 +30,7 @@ public class Locators2 {
 		
 		//Different selectors id, name, className, xpath, CSS Selector
 		website.findElement(By.id("inputUsername")).sendKeys(UserName);
-		website.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy");
+		website.findElement(By.name("inputPassword")).sendKeys(password);
 		website.findElement(By.xpath("//div[@id='container']//form[@class='form']/button[@type='submit']")).click();
 		Thread.sleep(1000);	
 		System.out.println(website.findElement(By.tagName("p")).getText());
@@ -39,6 +41,22 @@ public class Locators2 {
 		
 		//Logout
 		website.findElement(By.xpath("//button[text()='Log Out']")).click();
+		
+		
 		website.close();
+	}
+	
+	public static String getPassword (WebDriver website) throws InterruptedException {
+		website.get("https://rahulshettyacademy.com/locatorspractice/");
+		website.findElement(By.linkText("Forgot your password?")).click();
+		Thread.sleep(1000);
+		website.findElement(By.cssSelector(".reset-pwd-btn")).click();
+		String passwordText = website.findElement(By.cssSelector("form p")).getText();
+		String[] passwordArray = passwordText.split("'");
+		String finalPassword = passwordArray[1].split("'")[0];
+		System.out.println("password is " + finalPassword);
+		
+		return finalPassword;
+			
 	}
 }
