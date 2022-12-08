@@ -8,7 +8,11 @@ public class Locators3 {
 		WebDriver website = new ChromeDriver();
 		
 		website.get("https://rahulshettyacademy.com/AutomationPractice/");
-		website.findElement(By.xpath("//div/button[1]/following-sibling::button[1]")).click();
+		// traversing from sibling to sibling
+		System.out.println(website.findElement(By.xpath("//div/button[1]/following-sibling::button[1]")).getText());
+		// traversing from sibling to parent
+		// System.out.println(website.findElement(By.xpath("//div/button[1]/parent::div")).getText());
+		System.out.println(website.findElement(By.xpath("//div/button[1]/following-sibling::button[1]/parent::div/parent::header/a[2]")).getText());
 
 		
 	}
