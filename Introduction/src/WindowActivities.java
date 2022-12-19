@@ -9,7 +9,7 @@ public class WindowActivities {
 		//viewport settings
 		website.manage().window().maximize();
 		website.get("http://www.google.com"); // this way of going to a website waits until all web components are loaded before continuing
-		website.navigate().to("http://www.bbc.co.uk"); //this way does it, it'll immediately move to the next step
+		website.navigate().to("https://rahulshettyacademy.com/dropdownsPractise/"); //this way does it, it'll immediately move to the next step
 		website.navigate().back();
 		website.navigate().forward();
 	}
